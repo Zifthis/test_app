@@ -12,9 +12,7 @@ class _ApiClient implements ApiClient {
   _ApiClient(
     this._dio, {
     this.baseUrl,
-  }) {
-    baseUrl ??= 'https://api.themoviedb.org/3';
-  }
+  });
 
   final Dio _dio;
 
