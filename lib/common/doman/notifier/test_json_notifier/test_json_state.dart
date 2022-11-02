@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_app/data/models/test_json_response.dart';
+import 'package:test_app/common/data/models/test_json_response.dart';
 
 part 'test_json_state.freezed.dart';
 

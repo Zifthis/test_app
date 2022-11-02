@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/doman/notifier/scrapbook_notifier/scrapbook_notifier.dart';
-import 'package:test_app/doman/notifier/test_json_notifier/test_json_notifier.dart';
-import 'package:test_app/doman/notifier/test_json_two_notifier/test_two_json_notifier.dart';
+import 'package:test_app/common/doman/notifier/scrapbook_notifier/scrapbook_notifier.dart';
+import 'package:test_app/common/doman/notifier/test_json_notifier/test_json_notifier.dart';
+import 'package:test_app/common/doman/notifier/test_json_two_notifier/test_two_json_notifier.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});

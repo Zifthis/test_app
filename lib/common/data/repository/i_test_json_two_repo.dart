@@ -1,4 +1,4 @@
-import 'package:test_app/data/models/test_json_two_response.dart';
+import 'package:test_app/common/data/models/test_json_two_response.dart';
 
 abstract class ITestJsonTwoRepo {
   TestJsonTwoResponse fetchTestJsonTwoRepo();
