@@ -1,6 +1,3 @@
-import 'package:test_app/data/models/notifications_response.dart';
-import 'package:test_app/data/models/scrapbook_response.dart';
-
 class TestMapResponse {
   final String? status;
   final int? gold;
@@ -13,13 +10,6 @@ class TestMapResponse {
     this.scrapbook,
   });
 
-  /*factory TestMapResponse.empty() => TestMapResponse(
-        gold: null,
-        notifications: null,
-        scrapbook: null,
-        status: 'error',
-      );*/
-
   static TestMapResponse fromJson(Map<String, dynamic> testResponse) =>
       (TestMapResponse(
         status: testResponse['status'],
@@ -28,4 +18,44 @@ class TestMapResponse {
             NotificationsResponse.fromJson(testResponse['notifications']),
         scrapbook: ScarpBookResponse.fromJson(testResponse['scrapbook']),
       ));
+
+  Map<String, dynamic> toJson(TestMapResponse testToJson) => <String, dynamic>{
+        'status': testToJson.status,
+        'gold': testToJson.gold,
+        'notifications': testToJson.notifications,
+        'scrapbook': testToJson.scrapbook,
+      };
+}
+
+class NotificationsResponse {
+  final List? main;
+
+  NotificationsResponse({this.main});
+
+  static NotificationsResponse fromJson(
+          Map<String, dynamic> notificationResponse) =>
+      NotificationsResponse(
+        main: notificationResponse['main'],
+      );
+
+  Map<String, dynamic> toJson(NotificationsResponse notificationToJson) =>
+      <String, dynamic>{
+        'main': notificationToJson.main,
+      };
+}
+
+class ScarpBookResponse {
+  final String? id;
+
+  ScarpBookResponse({this.id});
+
+  static ScarpBookResponse fromJson(Map<String, dynamic> scrapbookResponse) =>
+      ScarpBookResponse(
+        id: scrapbookResponse['id'],
+      );
+
+  Map<String, dynamic> toJson(ScarpBookResponse scarpBookToJson) =>
+      <String, dynamic>{
+        'id': scarpBookToJson.id,
+      };
 }

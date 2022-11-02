@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/data/repository/i_scrapbook_repo.dart';
 import 'package:test_app/data/repository/scrapbook_repo.dart';
-import 'package:test_app/doman/notifier/scrapbook_state.dart';
+import 'package:test_app/doman/notifier/scrapbook_notifier/scrapbook_state.dart';
 
 final getScrapbookNotifier =
     StateNotifierProvider<ScrapbookNotifier, ScrapbookState>(
