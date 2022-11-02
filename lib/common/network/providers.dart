@@ -4,8 +4,12 @@ import 'package:test_app/common/network/api_client/api_client.dart';
 import 'package:test_app/common/network/api_const.dart';
 import 'package:test_app/common/network/interceptors/header_interceptors.dart';
 
+/// DioClient uses provider for easy access through the app
+
 final apiClientProvider = Provider<ApiClient>(
-  (ref) => ApiClient(ref.read(_apiClientProvider)),
+  (ref) => ApiClient(ref.read(
+    _apiClientProvider,
+  )),
 );
 
 final _apiClientProvider = _buildDioProviderWith(
@@ -20,6 +24,7 @@ Provider<Dio> _buildDioProviderWith({
         BaseOptions(baseUrl: baseUrl),
       )..interceptors.addAll(
           [
+            //HEADER INTERCEPTOR FOR URL
             HeaderInterceptor(),
           ],
         ),
