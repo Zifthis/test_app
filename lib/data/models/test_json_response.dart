@@ -8,7 +8,7 @@ class TestJsonResponse {
         menu: Menu.fromJson(testJsonResponse['menu']),
       );
 
-  Map<String, dynamic> toJson(TestJsonResponse testToJson) => <String, dynamic>{
+  Map<String, dynamic> toJson(TestJsonResponse testToJson) => {
         'menu': testToJson.menu,
       };
 }
@@ -26,7 +26,7 @@ class Menu {
         value: menuResponse['value'],
       );
 
-  Map<String, dynamic> toJson(Menu menuToJson) => <String, dynamic>{
+  Map<String, dynamic> toJson(Menu menuToJson) => {
         'id': menuToJson.id,
         'value': menuToJson.value,
         'popup': menuToJson.popup,
@@ -60,7 +60,7 @@ class MenuItems {
         value: menuItemResponse['value'],
       );
 
-  Map<String, dynamic> toJson(MenuItems menuItemsToJson) => <String, dynamic>{
+  Map<String, dynamic> toJson(MenuItems menuItemsToJson) => {
         'value': menuItemsToJson.value,
         'onclick': menuItemsToJson.onclick,
       };

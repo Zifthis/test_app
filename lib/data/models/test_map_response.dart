@@ -19,7 +19,7 @@ class TestMapResponse {
         scrapbook: ScarpBookResponse.fromJson(testResponse['scrapbook']),
       ));
 
-  Map<String, dynamic> toJson(TestMapResponse testToJson) => <String, dynamic>{
+  Map<String, dynamic> toJson(TestMapResponse testToJson) => {
         'status': testToJson.status,
         'gold': testToJson.gold,
         'notifications': testToJson.notifications,
@@ -38,8 +38,7 @@ class NotificationsResponse {
         main: notificationResponse['main'],
       );
 
-  Map<String, dynamic> toJson(NotificationsResponse notificationToJson) =>
-      <String, dynamic>{
+  Map<String, dynamic> toJson(NotificationsResponse notificationToJson) => {
         'main': notificationToJson.main,
       };
 }
@@ -54,8 +53,7 @@ class ScarpBookResponse {
         id: scrapbookResponse['id'],
       );
 
-  Map<String, dynamic> toJson(ScarpBookResponse scarpBookToJson) =>
-      <String, dynamic>{
+  Map<String, dynamic> toJson(ScarpBookResponse scarpBookToJson) => {
         'id': scarpBookToJson.id,
       };
 }

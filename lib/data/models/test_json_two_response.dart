@@ -19,8 +19,7 @@ class TestJsonTwoResponse {
         lastName: tesJsonResponse['lastName'],
       );
 
-  Map<String, dynamic> toJson(TestJsonTwoResponse TestTwotoJson) =>
-      <String, dynamic>{
+  Map<String, dynamic> toJson(TestJsonTwoResponse TestTwotoJson) => {
         'address': TestTwotoJson.address,
         'age': TestTwotoJson.age,
         'firstName': TestTwotoJson.firstName,
@@ -48,7 +47,7 @@ class Address {
         streetAddress: addressResponse['streetAddress'],
       );
 
-  Map<String, dynamic> toJson(Address addressToJson) => <String, dynamic>{
+  Map<String, dynamic> toJson(Address addressToJson) => {
         'city': addressToJson.city,
         'postalCode': addressToJson.postCode,
         'state': addressToJson.state,
