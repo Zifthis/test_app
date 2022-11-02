@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/common/data/repository/i_test_json_two_repo.dart';
 import 'package:test_app/common/data/repository/test_json_two_repo.dart';
-import 'package:test_app/common/doman/notifier/test_json_two_notifier/test_two_json_state.dart';
+import 'package:test_app/common/domain/notifier/test_json_two_notifier/test_two_json_state.dart';
 
 final getTestTwoJsonNotifier =
     StateNotifierProvider<TestTwoJsonNotifier, TestTwoJsonState>(
