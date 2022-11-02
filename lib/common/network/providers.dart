@@ -5,7 +5,6 @@ import 'package:test_app/common/network/api_const.dart';
 import 'package:test_app/common/network/interceptors/header_interceptors.dart';
 
 /// DioClient uses provider for easy access through the app
-
 final apiClientProvider = Provider<ApiClient>(
   (ref) => ApiClient(ref.read(
     _apiClientProvider,
@@ -24,7 +23,9 @@ Provider<Dio> _buildDioProviderWith({
         BaseOptions(baseUrl: baseUrl),
       )..interceptors.addAll(
           [
-            //HEADER INTERCEPTOR FOR URL
+            //HEADER INTERCEPTOR: API gateway server built for
+            //accepting API requests from the client applications
+            //and routing them to the appropriate backend services.
             HeaderInterceptor(),
           ],
         ),

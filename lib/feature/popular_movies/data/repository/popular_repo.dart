@@ -5,6 +5,7 @@ import 'package:test_app/feature/popular_movies/data/models/get_popular_response
 
 import 'package:test_app/feature/popular_movies/data/repository/i_popular_repo.dart';
 
+//Getting Dio client provider
 final popularRepositoryProvider = Provider<IPopularRepo>(
   (ref) => PopularRepo(ref.read(apiClientProvider)),
 );
