@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/common/domain/notifier/scrapbook_notifier/scrapbook_notifier.dart';
-import 'package:test_app/common/domain/notifier/test_json_notifier/test_json_notifier.dart';
-import 'package:test_app/common/domain/notifier/test_json_two_notifier/test_two_json_notifier.dart';
+import 'package:test_app/common/domain/notifier/cake_notifier/cake_notifier.dart';
 
 class Home extends ConsumerWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scrapbookState = ref.watch(getScrapbookNotifier);
-    final testJsonState = ref.watch(getTestJsonNotifier);
-    final testTwoJsonState = ref.watch(getTestTwoJsonNotifier);
+    final cakeState = ref.watch(getCakeNotifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -20,7 +16,7 @@ class Home extends ConsumerWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          scrapbookState.maybeWhen(
+          cakeState.maybeWhen(
             loading: () => const Center(child: CircularProgressIndicator()),
             orElse: () => const Center(child: Text('Error')),
             loaded: (value) => Center(
@@ -30,70 +26,27 @@ class Home extends ConsumerWidget {
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(value.scrapbook?.id ?? ''),
+                  Text(value.id.toString()),
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(value.gold.toString()),
+                  Text(value.type.toString()),
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(value.notifications?.main?.toString() ?? ''),
+                  Text(value.name.toString()),
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(value.status ?? ''),
-                ],
-              ),
-            ),
-          ),
-          testJsonState.maybeWhen(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            orElse: () => const Center(child: Text('Error')),
-            loaded: (value) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 36,
-                  ),
-                  Text(value.menu!.id ?? ''),
+                  Text(value.value.toString()),
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(value.menu!.value ?? ''),
+                  Text(value.batters?.batter?.first.type ?? ''),
                   const SizedBox(
                     height: 16,
                   ),
-                  Text(value.menu?.popup?.menuItem?.first.onclick ?? ''),
-                  Text(value.menu?.popup?.menuItem?.first.value ?? ''),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          testTwoJsonState.maybeWhen(
-            loading: () => const Center(child: CircularProgressIndicator()),
-            orElse: () => const Center(child: Text('Error')),
-            loaded: (value) => Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(value.address?.city ?? ''),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(value.address?.postCode ?? ''),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(value.address?.state ?? ''),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(value.address?.streetAddress ?? ''),
+                  Text(value.topping?.last.type ?? ''),
                 ],
               ),
             ),
