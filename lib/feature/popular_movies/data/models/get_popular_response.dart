@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:test_app/feature/popular_movies/domain/entities/popular.dart';
 
 part 'get_popular_response.g.dart';
 
@@ -57,21 +56,4 @@ class PopularResponse {
 
   factory PopularResponse.fromJson(Map<String, dynamic> json) =>
       _$PopularResponseFromJson(json);
-
-  Popular toDomain() => Popular(
-        adult: adult,
-        backdropPath: backdropPath,
-        genreIds: genreIds,
-        id: id,
-        originalLanguage: originalLanguage,
-        originalTitle: originalTitle,
-        overview: overview,
-        popularity: popularity,
-        posterPath: posterPath,
-        releaseDate: releaseDate,
-        title: title,
-        video: video,
-        voteAverage: voteAverage,
-        voteCount: voteCount,
-      );
 }
