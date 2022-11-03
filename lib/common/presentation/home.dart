@@ -18,7 +18,7 @@ class Home extends ConsumerWidget {
           loading: () => const Center(child: CircularProgressIndicator()),
           orElse: () => const Center(child: Text('Error')),
           loaded: (value) => ListView.builder(
-            itemCount: value.results?.length ?? 0,
+            itemCount: value.result?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -27,13 +27,13 @@ class Home extends ConsumerWidget {
                   child: ListTile(
                     leading: const Icon(Icons.list),
                     trailing: Text(
-                      value.results?[index].voteAverage.toString() ?? '',
+                      value.result?[index].voteAverage.toString() ?? '',
                       style: const TextStyle(
                         color: Colors.green,
                         fontSize: 15,
                       ),
                     ),
-                    title: Text(value.results?[index].title.toString() ?? ''),
+                    title: Text(value.result?[index].title.toString() ?? ''),
                   ),
                 ),
               );

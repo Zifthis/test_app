@@ -19,13 +19,13 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
-  Future<GetPopularResponse> getPopularMovies() async {
+  Future<MovieResponse> getPopularMovies() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<GetPopularResponse>(Options(
+        .fetch<Map<String, dynamic>>(_setStreamType<MovieResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -37,7 +37,7 @@ class _ApiClient implements ApiClient {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = GetPopularResponse.fromJson(_result.data!);
+    final value = MovieResponse.fromJson(_result.data!);
     return value;
   }
 

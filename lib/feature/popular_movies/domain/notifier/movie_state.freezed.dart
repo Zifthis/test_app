@@ -20,7 +20,7 @@ mixin _$MovieState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GetPopularResponse getPopularResponse) loaded,
+    required TResult Function(MovieResponse movieResponse) loaded,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$MovieState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult? Function(MovieResponse movieResponse)? loaded,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$MovieState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult Function(MovieResponse movieResponse)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +126,7 @@ class _$_MovieStateInitial implements _MovieStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GetPopularResponse getPopularResponse) loaded,
+    required TResult Function(MovieResponse movieResponse) loaded,
     required TResult Function(String error) error,
   }) {
     return initial();
@@ -137,7 +137,7 @@ class _$_MovieStateInitial implements _MovieStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult? Function(MovieResponse movieResponse)? loaded,
     TResult? Function(String error)? error,
   }) {
     return initial?.call();
@@ -148,7 +148,7 @@ class _$_MovieStateInitial implements _MovieStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult Function(MovieResponse movieResponse)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +240,7 @@ class _$_MovieStateLoading implements _MovieStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GetPopularResponse getPopularResponse) loaded,
+    required TResult Function(MovieResponse movieResponse) loaded,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -251,7 +251,7 @@ class _$_MovieStateLoading implements _MovieStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult? Function(MovieResponse movieResponse)? loaded,
     TResult? Function(String error)? error,
   }) {
     return loading?.call();
@@ -262,7 +262,7 @@ class _$_MovieStateLoading implements _MovieStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult Function(MovieResponse movieResponse)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +320,7 @@ abstract class _$$_MovieStateLoadedCopyWith<$Res> {
           _$_MovieStateLoaded value, $Res Function(_$_MovieStateLoaded) then) =
       __$$_MovieStateLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({GetPopularResponse getPopularResponse});
+  $Res call({MovieResponse movieResponse});
 }
 
 /// @nodoc
@@ -334,13 +334,13 @@ class __$$_MovieStateLoadedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? getPopularResponse = null,
+    Object? movieResponse = null,
   }) {
     return _then(_$_MovieStateLoaded(
-      null == getPopularResponse
-          ? _value.getPopularResponse
-          : getPopularResponse // ignore: cast_nullable_to_non_nullable
-              as GetPopularResponse,
+      null == movieResponse
+          ? _value.movieResponse
+          : movieResponse // ignore: cast_nullable_to_non_nullable
+              as MovieResponse,
     ));
   }
 }
@@ -348,14 +348,14 @@ class __$$_MovieStateLoadedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MovieStateLoaded implements _MovieStateLoaded {
-  const _$_MovieStateLoaded(this.getPopularResponse);
+  const _$_MovieStateLoaded(this.movieResponse);
 
   @override
-  final GetPopularResponse getPopularResponse;
+  final MovieResponse movieResponse;
 
   @override
   String toString() {
-    return 'MovieState.loaded(getPopularResponse: $getPopularResponse)';
+    return 'MovieState.loaded(movieResponse: $movieResponse)';
   }
 
   @override
@@ -363,12 +363,12 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MovieStateLoaded &&
-            (identical(other.getPopularResponse, getPopularResponse) ||
-                other.getPopularResponse == getPopularResponse));
+            (identical(other.movieResponse, movieResponse) ||
+                other.movieResponse == movieResponse));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, getPopularResponse);
+  int get hashCode => Object.hash(runtimeType, movieResponse);
 
   @JsonKey(ignore: true)
   @override
@@ -381,10 +381,10 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GetPopularResponse getPopularResponse) loaded,
+    required TResult Function(MovieResponse movieResponse) loaded,
     required TResult Function(String error) error,
   }) {
-    return loaded(getPopularResponse);
+    return loaded(movieResponse);
   }
 
   @override
@@ -392,10 +392,10 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult? Function(MovieResponse movieResponse)? loaded,
     TResult? Function(String error)? error,
   }) {
-    return loaded?.call(getPopularResponse);
+    return loaded?.call(movieResponse);
   }
 
   @override
@@ -403,12 +403,12 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult Function(MovieResponse movieResponse)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(getPopularResponse);
+      return loaded(movieResponse);
     }
     return orElse();
   }
@@ -452,10 +452,10 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
 }
 
 abstract class _MovieStateLoaded implements MovieState {
-  const factory _MovieStateLoaded(final GetPopularResponse getPopularResponse) =
+  const factory _MovieStateLoaded(final MovieResponse movieResponse) =
       _$_MovieStateLoaded;
 
-  GetPopularResponse get getPopularResponse;
+  MovieResponse get movieResponse;
   @JsonKey(ignore: true)
   _$$_MovieStateLoadedCopyWith<_$_MovieStateLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -527,7 +527,7 @@ class _$_MovieStateError implements _MovieStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(GetPopularResponse getPopularResponse) loaded,
+    required TResult Function(MovieResponse movieResponse) loaded,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -538,7 +538,7 @@ class _$_MovieStateError implements _MovieStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult? Function(MovieResponse movieResponse)? loaded,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -549,7 +549,7 @@ class _$_MovieStateError implements _MovieStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(GetPopularResponse getPopularResponse)? loaded,
+    TResult Function(MovieResponse movieResponse)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
