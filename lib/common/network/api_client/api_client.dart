@@ -10,4 +10,9 @@ abstract class ApiClient {
 
   @GET("/movie/popular")
   Future<MovieResponse> getPopularMovies();
+
+  @GET("/movie/{id}")
+  Future<MovieResponse> getMovieDetails({
+    @Path('id') required String id,
+  });
 }

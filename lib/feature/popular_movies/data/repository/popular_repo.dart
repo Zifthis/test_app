@@ -15,7 +15,7 @@ class PopularRepo implements IPopularRepo {
 
   @override
   Future<MovieResponse> getPopularResponse() async {
-    final response = await _apiClient.getPosts();
+    final response = await _apiClient.getMovieList();
     return response;
   }
 }
