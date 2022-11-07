@@ -17,7 +17,7 @@ class _HomeState extends ConsumerState<Home> {
       shouldDisplayBottomSheet,
       (_, next) {
         if (next = true) {
-          _displayBottomSheet('error');
+          _displayBottomSheet();
         }
       },
     );
@@ -43,13 +43,19 @@ class _HomeState extends ConsumerState<Home> {
               },
               child: const Text('Go to Movies screen'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                _displayBottomSheet();
+              },
+              child: const Text('Bottom Sheet'),
+            ),
           ],
         ),
       ),
     );
   }
 
-  void _displayBottomSheet(String errorMsg) async {
+  void _displayBottomSheet() async {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -61,7 +67,7 @@ class _HomeState extends ConsumerState<Home> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text(errorMsg),
+                const Text('Error when fetching movie details'),
                 ElevatedButton(
                     child: const Text('Close BottomSheet'),
                     onPressed: () {
