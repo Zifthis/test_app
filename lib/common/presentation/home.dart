@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/common/presentation/movie_screen.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/bottom_sheet_provider.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/movie_provider.dart';
-import 'package:test_app/feature/popular_movies/presentation/movie_list.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
@@ -14,33 +13,36 @@ class Home extends ConsumerStatefulWidget {
 class _HomeState extends ConsumerState<Home> {
   @override
   Widget build(BuildContext context) {
-    bool shouldShowList = ref.watch(getMovieListStateProvider);
-
     ref.listen<bool>(
       shouldDisplayBottomSheet,
       (_, next) {
         if (next = true) {
           _displayBottomSheet('error');
-        } else {
-          _displayBottomSheet('sns');
         }
       },
     );
 
     return Scaffold(
+      backgroundColor: Colors.orangeAccent,
       appBar: AppBar(
-        title: const Text('Test App'),
+        backgroundColor: Colors.black,
+        title: const Text('Home'),
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('Movies'),
             ElevatedButton(
-              onPressed: () =>
-                  ref.read(getMovieListStateProvider.notifier).state = true,
-              child: const Text('Fetch Movies'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return const MovieScreen();
+                  }),
+                );
+              },
+              child: const Text('Go to Movies screen'),
             ),
-            shouldShowList ? const MovieList() : const SizedBox(),
           ],
         ),
       ),
@@ -61,9 +63,11 @@ class _HomeState extends ConsumerState<Home> {
               children: <Widget>[
                 Text(errorMsg),
                 ElevatedButton(
-                  child: const Text('Close BottomSheet'),
-                  onPressed: () => Navigator.pop(context),
-                ),
+                    child: const Text('Close BottomSheet'),
+                    onPressed: () {
+                      ref.read(shouldDisplayBottomSheet.notifier).state = false;
+                      Navigator.pop(context);
+                    }),
               ],
             ),
           ),

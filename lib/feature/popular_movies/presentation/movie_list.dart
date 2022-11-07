@@ -24,7 +24,7 @@ class MovieList extends ConsumerWidget {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ColoredBox(
-                  color: Colors.greenAccent,
+                  color: Colors.white,
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -36,11 +36,11 @@ class MovieList extends ConsumerWidget {
                       );
                     },
                     child: ListTile(
-                      leading: const Icon(Icons.list),
+                      leading: const Icon(Icons.movie),
                       trailing: Text(
                         value.result?[index].voteAverage.toString() ?? '',
                         style: const TextStyle(
-                          color: Colors.green,
+                          color: Colors.blue,
                           fontSize: 15,
                         ),
                       ),
