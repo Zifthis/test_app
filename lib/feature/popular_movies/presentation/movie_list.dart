@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/common/domain/error/app_failure.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/movie_details/presentation/movie_details_screen.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
@@ -15,24 +16,50 @@ class MovieList extends ConsumerWidget {
     return Expanded(
       child: SizedBox(
         child: state.maybeWhen(
-          initial: () => Center(
-            child: ElevatedButton(
-              onPressed: () =>
-                  ref.read(getMovieNotifier.notifier).fetchMovies(),
-              child: const Text('Load Movies'),
-            ),
-          ),
-          error: (error) => Center(
-            child: ElevatedButton(
-              onPressed: () =>
-                  ref.read(getMovieNotifier.notifier).fetchMovies(),
-              child: Text('Error: ${error.title} try again'),
-            ),
-          ),
+          initial: () => const InitialButton(),
+          error: (error) => ErrorButton(error: error),
           loading: () => const Center(child: CircularProgressIndicator()),
           loaded: (value) => MovieListView(movieResponse: value),
           orElse: () => const Center(child: Text('Error')),
         ),
+      ),
+    );
+  }
+}
+
+class InitialButton extends ConsumerWidget {
+  const InitialButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () => ref.read(getMovieNotifier.notifier).fetchMovies(),
+        child: const Text('Load Movies'),
+      ),
+    );
+  }
+}
+
+class ErrorButton extends ConsumerWidget {
+  final AppFailure error;
+  const ErrorButton({
+    super.key,
+    required this.error,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Center(
+      child: Column(
+        children: [
+          Text('Error: ${error.title}'),
+          const SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: () => ref.read(getMovieNotifier.notifier).fetchMovies(),
+            child: const Text('Try again'),
+          ),
+        ],
       ),
     );
   }
