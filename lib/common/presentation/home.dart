@@ -43,12 +43,6 @@ class _HomeState extends ConsumerState<Home> {
               },
               child: const Text('Go to Movies screen'),
             ),
-            ElevatedButton(
-              onPressed: () {
-                _displayBottomSheet();
-              },
-              child: const Text('Bottom Sheet'),
-            ),
           ],
         ),
       ),
@@ -66,14 +60,17 @@ class _HomeState extends ConsumerState<Home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
+              children: [
                 const Text('Error when fetching movie details'),
+                const SizedBox(
+                  height: 8,
+                ),
                 ElevatedButton(
-                    child: const Text('Close BottomSheet'),
-                    onPressed: () {
-                      ref.read(shouldDisplayBottomSheet.notifier).state = false;
-                      Navigator.pop(context);
-                    }),
+                  child: const Text('Close BottomSheet'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ],
             ),
           ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/common/const.dart';
+import 'package:test_app/common/presentation/movie_screen.dart';
 import 'package:test_app/feature/movie_details/domain/entities/movie_details.dart';
+import 'package:test_app/feature/movie_details/domain/notifier/bottom_sheet_provider.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/movie_details/presentation/widget/row_widget.dart';
 import 'package:test_app/feature/movie_details/presentation/widget/text_style.dart';
@@ -20,9 +23,26 @@ class MovieDetailsScreen extends ConsumerWidget {
     return Scaffold(
       body: detailsState.maybeWhen(
         orElse: () => const Center(child: CircularProgressIndicator()),
+        error: (value) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return const MovieScreen();
+              }),
+            );
+            _popUpMethod(ref);
+          });
+
+          return null;
+        },
         loaded: (value) => DetailScreen(movieDetails: value),
       ),
     );
+  }
+
+  void _popUpMethod(WidgetRef ref) async {
+    ref.read(shouldDisplayBottomSheet.notifier).state = true;
   }
 }
 
