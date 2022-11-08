@@ -36,4 +36,32 @@ class MovieDetails with _$MovieDetails {
     final double? voteAverage,
     final int? voteCount,
   }) = _MovieDetails;
+
+  factory MovieDetails.empty() => const MovieDetails(
+        adult: null,
+        backdropPath: null,
+        belongsToCollection: null,
+        budget: null,
+        genres: null,
+        homepage: null,
+        id: null,
+        imdbId: null,
+        originalLanguage: null,
+        originalTitle: null,
+        overview: null,
+        popularity: null,
+        posterPath: null,
+        productionCompanies: null,
+        productionCountries: null,
+        releaseDate: null,
+        revenue: null,
+        runtime: null,
+        spokenLanguages: null,
+        status: null,
+        tagline: null,
+        title: null,
+        video: null,
+        voteAverage: null,
+        voteCount: null,
+      );
 }

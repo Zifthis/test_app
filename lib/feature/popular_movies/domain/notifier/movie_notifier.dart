@@ -1,26 +1,33 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/feature/popular_movies/data/repository/i_popular_repo.dart';
-import 'package:test_app/feature/popular_movies/data/repository/popular_repo.dart';
+import 'package:test_app/feature/popular_movies/data/repository/i_movie_repository.dart';
+import 'package:test_app/feature/popular_movies/data/repository/movie_repository.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/movie_state.dart';
 
 final getMovieNotifier = StateNotifierProvider<MovieNotifier, MovieState>(
   (ref) => MovieNotifier(
-    ref.read(popularRepositoryProvider),
+    ref.read(movieRepositoryProvider),
   ),
 );
 
 class MovieNotifier extends StateNotifier<MovieState> {
-  final IPopularRepo _iPopularRepo;
+  final IMovieRepository _iPopularRepo;
 
   MovieNotifier(
     this._iPopularRepo,
   ) : super(const MovieState.initial()) {
-    getMovie();
+    fetchMovies();
   }
 
-  Future<void> getMovie() async {
+  Future<void> fetchMovies() async {
     state = const MovieState.loading();
     final movie = await _iPopularRepo.getPopularResponse();
-    state = MovieState.loaded(movie);
+    state = movie.fold(
+      (l) => MovieState.error(l),
+      (r) => MovieState.loaded(r),
+    );
   }
 }
+
+
+
+///DODATI KOMENTARE KROZ CIJELU APP

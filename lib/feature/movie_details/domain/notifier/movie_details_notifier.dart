@@ -1,31 +1,28 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/feature/movie_details/data/repository/i_movie_details_repo.dart';
-import 'package:test_app/feature/movie_details/data/repository/movie_details_repo.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_state.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/movie_id_provider.dart';
+import 'package:test_app/feature/popular_movies/data/repository/i_movie_repository.dart';
+import 'package:test_app/feature/popular_movies/data/repository/movie_repository.dart';
 
 final getMovieDetailsNotifier =
-    StateNotifierProvider.autoDispose<MovieDetailsNotifier, MovieDetailsState>(
+    StateNotifierProvider<MovieDetailsNotifier, MovieDetailsState>(
   (ref) => MovieDetailsNotifier(
-    ref.read(movieDetailsRepositoryProvider),
-    ref.read(getMovieIdProvider),
+    ref.read(movieRepositoryProvider),
   ),
 );
 
 class MovieDetailsNotifier extends StateNotifier<MovieDetailsState> {
-  final IMovieDetailsRepo _iMovieDetailsRepo;
-  final String _movieId;
+  final IMovieRepository _iMovieDetailsRepo;
 
   MovieDetailsNotifier(
     this._iMovieDetailsRepo,
-    this._movieId,
-  ) : super(const MovieDetailsState.initial()) {
-    getMovieDetails(_movieId);
-  }
+  ) : super(const MovieDetailsState.initial());
 
   Future<void> getMovieDetails(String movieId) async {
     state = const MovieDetailsState.loading();
     final movie = await _iMovieDetailsRepo.fetchMovieDetails(movieId);
-    state = MovieDetailsState.loaded(movie);
+    state = movie.fold(
+      (l) => MovieDetailsState.error(l),
+      (r) => MovieDetailsState.loaded(r),
+    );
   }
 }

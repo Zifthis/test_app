@@ -19,6 +19,13 @@ class MovieResponse {
         totalPages: json['total_pages'],
         totalResults: json['total_results'],
       );
+
+  factory MovieResponse.empty() => MovieResponse(
+        page: null,
+        result: null,
+        totalPages: null,
+        totalResults: null,
+      );
 }
 
 class Result {

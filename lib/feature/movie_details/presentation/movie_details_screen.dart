@@ -15,10 +15,14 @@ class MovieDetailsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final detailsState = ref.watch(getMovieDetailsNotifier);
 
+    //ref.listen za btm sheet onerror
+
     return Scaffold(
-        body: detailsState.maybeWhen(
-            orElse: () => const Center(child: CircularProgressIndicator()),
-            loaded: (value) => DetailScreen(movieDetails: value)));
+      body: detailsState.maybeWhen(
+        orElse: () => const Center(child: CircularProgressIndicator()),
+        loaded: (value) => DetailScreen(movieDetails: value),
+      ),
+    );
   }
 }
 

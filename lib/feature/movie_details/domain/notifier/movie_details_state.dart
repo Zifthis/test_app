@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_app/common/domain/error/app_failure.dart';
 import 'package:test_app/feature/movie_details/domain/entities/movie_details.dart';
 
 part 'movie_details_state.freezed.dart';
@@ -10,5 +11,6 @@ class MovieDetailsState with _$MovieDetailsState {
   const factory MovieDetailsState.loaded(
     MovieDetails movieDetails,
   ) = _MovieDetailsStateLoaded;
-  const factory MovieDetailsState.error(String error) = _MovieDetailsStateError;
+  const factory MovieDetailsState.error(AppFailure error) =
+      _MovieDetailsStateError;
 }

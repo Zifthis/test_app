@@ -21,7 +21,7 @@ mixin _$MovieState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(String error) error,
+    required TResult Function(AppFailure error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$MovieState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(String error)? error,
+    TResult? Function(AppFailure error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$MovieState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(String error)? error,
+    TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -127,7 +127,7 @@ class _$_MovieStateInitial implements _MovieStateInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(String error) error,
+    required TResult Function(AppFailure error) error,
   }) {
     return initial();
   }
@@ -138,7 +138,7 @@ class _$_MovieStateInitial implements _MovieStateInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(String error)? error,
+    TResult? Function(AppFailure error)? error,
   }) {
     return initial?.call();
   }
@@ -149,7 +149,7 @@ class _$_MovieStateInitial implements _MovieStateInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(String error)? error,
+    TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -241,7 +241,7 @@ class _$_MovieStateLoading implements _MovieStateLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(String error) error,
+    required TResult Function(AppFailure error) error,
   }) {
     return loading();
   }
@@ -252,7 +252,7 @@ class _$_MovieStateLoading implements _MovieStateLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(String error)? error,
+    TResult? Function(AppFailure error)? error,
   }) {
     return loading?.call();
   }
@@ -263,7 +263,7 @@ class _$_MovieStateLoading implements _MovieStateLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(String error)? error,
+    TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -382,7 +382,7 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(String error) error,
+    required TResult Function(AppFailure error) error,
   }) {
     return loaded(movieResponse);
   }
@@ -393,7 +393,7 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(String error)? error,
+    TResult? Function(AppFailure error)? error,
   }) {
     return loaded?.call(movieResponse);
   }
@@ -404,7 +404,7 @@ class _$_MovieStateLoaded implements _MovieStateLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(String error)? error,
+    TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -467,7 +467,7 @@ abstract class _$$_MovieStateErrorCopyWith<$Res> {
           _$_MovieStateError value, $Res Function(_$_MovieStateError) then) =
       __$$_MovieStateErrorCopyWithImpl<$Res>;
   @useResult
-  $Res call({String error});
+  $Res call({AppFailure error});
 }
 
 /// @nodoc
@@ -487,7 +487,7 @@ class __$$_MovieStateErrorCopyWithImpl<$Res>
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
+              as AppFailure,
     ));
   }
 }
@@ -498,7 +498,7 @@ class _$_MovieStateError implements _MovieStateError {
   const _$_MovieStateError(this.error);
 
   @override
-  final String error;
+  final AppFailure error;
 
   @override
   String toString() {
@@ -528,7 +528,7 @@ class _$_MovieStateError implements _MovieStateError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(String error) error,
+    required TResult Function(AppFailure error) error,
   }) {
     return error(this.error);
   }
@@ -539,7 +539,7 @@ class _$_MovieStateError implements _MovieStateError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(String error)? error,
+    TResult? Function(AppFailure error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -550,7 +550,7 @@ class _$_MovieStateError implements _MovieStateError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(String error)? error,
+    TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -598,9 +598,9 @@ class _$_MovieStateError implements _MovieStateError {
 }
 
 abstract class _MovieStateError implements MovieState {
-  const factory _MovieStateError(final String error) = _$_MovieStateError;
+  const factory _MovieStateError(final AppFailure error) = _$_MovieStateError;
 
-  String get error;
+  AppFailure get error;
   @JsonKey(ignore: true)
   _$$_MovieStateErrorCopyWith<_$_MovieStateError> get copyWith =>
       throw _privateConstructorUsedError;

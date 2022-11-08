@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/movie_details/presentation/movie_details_screen.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/movie_id_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/movie_notifier.dart';
-
-import '../data/models/movie_response.dart';
 
 class MovieList extends ConsumerWidget {
   const MovieList({super.key});
@@ -16,8 +14,12 @@ class MovieList extends ConsumerWidget {
     return Expanded(
       child: SizedBox(
         child: state.maybeWhen(
+          // initial:  button ta fečanje liste,
+
+          //error: try again btn
           loading: () => const Center(child: CircularProgressIndicator()),
           orElse: () => const Center(child: Text('Error')),
+          // ekstraktaj widget
           loaded: (value) => ListView.builder(
             itemCount: value.result?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
@@ -26,15 +28,8 @@ class MovieList extends ConsumerWidget {
                 child: ColoredBox(
                   color: Colors.white,
                   child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) {
-                          _fetchId(ref, value, index);
-                          return const MovieDetailsScreen();
-                        }),
-                      );
-                    },
+                    onTap: () => _onTapButton(
+                        context, ref, value.result?[index].id ?? 0),
                     child: ListTile(
                       leading: const Icon(Icons.movie),
                       trailing: Text(
@@ -56,12 +51,15 @@ class MovieList extends ConsumerWidget {
     );
   }
 
-  void _fetchId(
-    WidgetRef ref,
-    MovieResponse value,
-    int index,
-  ) async {
-    ref.read(getMovieIdProvider.notifier).state =
-        value.result![index].id.toString();
+  void _onTapButton(BuildContext context, WidgetRef ref, int index) async {
+    ref
+        .read(getMovieDetailsNotifier.notifier)
+        .getMovieDetails(index.toString());
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) {
+        return const MovieDetailsScreen();
+      }),
+    );
   }
 }

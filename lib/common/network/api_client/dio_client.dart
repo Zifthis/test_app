@@ -1,6 +1,9 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:test_app/common/domain/error/app_failure.dart';
+import 'package:test_app/common/domain/error/error_handling.dart';
 import 'package:test_app/feature/movie_details/data/model/movie_details_response.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 
@@ -30,25 +33,24 @@ class DioClient {
     );
   }
 
-  Future<MovieResponse> getMovieList() async {
-    final response = await _dio.get('/movie/popular');
+  //error handling
+  EitherAppFailureOr<MovieResponse> getMovieList() async {
     try {
+      final response = await _dio.get('/movie/popular');
       final value = MovieResponse.fromJson(response.data);
-      return value;
+      return Right(value);
     } catch (err) {
-      print(err);
+      return Left(Failure.badGateway.toAppFailure);
     }
-    return MovieResponse.fromJson({});
   }
 
-  Future<MovieDetailsResponse> getMovieDetails(String id) async {
-    final response = await _dio.get('/movie/$id');
+  EitherAppFailureOr<MovieDetailsResponse> getMovieDetails(String id) async {
     try {
+      final response = await _dio.get('/movie/$id');
       final value = MovieDetailsResponse.fromJson(response.data);
-      return value;
+      return Right(value);
     } catch (err) {
-      print(err);
+      return Left(Failure.badGateway.toAppFailure);
     }
-    return MovieDetailsResponse.fromJson({});
   }
 }
