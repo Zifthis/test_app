@@ -14,9 +14,7 @@ class MovieNotifier extends StateNotifier<MovieState> {
 
   MovieNotifier(
     this._iPopularRepo,
-  ) : super(const MovieState.initial()) {
-    fetchMovies();
-  }
+  ) : super(const MovieState.initial());
 
   Future<void> fetchMovies() async {
     state = const MovieState.loading();

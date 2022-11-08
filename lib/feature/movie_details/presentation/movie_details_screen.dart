@@ -45,8 +45,8 @@ class DetailScreen extends ConsumerWidget {
       ),
       body: Center(
         child: Container(
-          width: 320,
-          height: 480,
+          width: 280,
+          height: 450,
           decoration: const BoxDecoration(
             color: Colors.black,
             borderRadius: BorderRadius.all(
