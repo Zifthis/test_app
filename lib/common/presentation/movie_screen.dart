@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/feature/popular_movies/presentation/movie_list.dart';
 
-class MovieScreen extends ConsumerStatefulWidget {
+class MovieScreen extends ConsumerWidget {
   const MovieScreen({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MovieScreen();
-}
-
-class _MovieScreen extends ConsumerState<MovieScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

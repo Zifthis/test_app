@@ -6,6 +6,12 @@ import 'package:test_app/feature/movie_details/presentation/movie_details_screen
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/movie_notifier.dart';
 
+//: PRESENTATION LAYER
+
+//5: Prezentacijski sloj koji komunicira s domenskim slojom. Domenski sloj dobiva response od podatkovnog sloja te na temelju tih podataka kreira state.
+// State kreiran u domenskom sloju se zatim provajda Prezentacijskom sluju (UI elementi).
+//Tom podjelom sva 3 sloja rade svoj dio posla na taj nacin je odvojena poslovna logika od UI-a
+
 class MovieList extends ConsumerWidget {
   const MovieList({super.key});
 

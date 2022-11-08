@@ -61,7 +61,14 @@ class _HomeState extends ConsumerState<Home> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Error when fetching movie details'),
+                const Text(
+                  'Error when fetching movie details',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
                 const SizedBox(
                   height: 8,
                 ),
