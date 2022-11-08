@@ -21,7 +21,6 @@ class _MovieScreen extends ConsumerState<MovieScreen> {
       body: Center(
         child: Column(
           children: const [
-            Text('Movies'),
             MovieList(),
           ],
         ),

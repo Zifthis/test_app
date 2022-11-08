@@ -3,7 +3,8 @@ import 'package:test_app/feature/popular_movies/data/repository/i_movie_reposito
 import 'package:test_app/feature/popular_movies/data/repository/movie_repository.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/movie_state.dart';
 
-final getMovieNotifier = StateNotifierProvider<MovieNotifier, MovieState>(
+final getMovieNotifier =
+    StateNotifierProvider.autoDispose<MovieNotifier, MovieState>(
   (ref) => MovieNotifier(
     ref.read(movieRepositoryProvider),
   ),
