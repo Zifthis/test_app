@@ -10,11 +10,13 @@ import 'package:test_app/feature/popular_movies/domain/notifier/movie_state.dart
 final getMovieNotifier =
     StateNotifierProvider.autoDispose<MovieNotifier, MovieState>(
   (ref) => MovieNotifier(
+    //injected
     ref.read(movieRepositoryProvider),
   ),
 );
 
 class MovieNotifier extends StateNotifier<MovieState> {
+  //depend
   final IMovieRepository _iPopularRepo;
 
   MovieNotifier(

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/common/domain/error/app_failure.dart';
 import 'package:test_app/common/domain/error/error_handling.dart';
@@ -20,17 +21,18 @@ class MovieRepository implements IMovieRepository {
 
   MovieRepository(this._apiClient);
 
-//funkicje sučelja se overrideaju potrebnom logikom, npr getPopularResponse() funkcija provjerava dobiven response je validan pomocu EitherAppFailureOr.
+//funkicje sučelja se overrideaju potrebnom logikom, npr. getPopularResponse() funkcija provjerava dobiven response je validan pomocu EitherAppFailureOr.
 //ukoliko response nije validan vraća se Failure poruka i prazan objekt, dok kod validnog responsa dohvaćaju se mapirani json objekti unutar modele - MovieResponse.
 
   @override
   EitherAppFailureOr<MovieResponse> getPopularResponse() async {
     try {
       final popularResponse = await _apiClient.getMovieList();
-      return Right(popularResponse.fold(
-        (l) => MovieResponse.empty(),
-        (r) => r,
-      ));
+      return Right(popularResponse);
+    } on DioError catch (error) {
+      final err = error;
+      err.response?.statusCode;
+      return Left(Failure.notFound.toAppFailure);
     } catch (err) {
       return Left(Failure.badRequest.toAppFailure);
     }
@@ -40,10 +42,7 @@ class MovieRepository implements IMovieRepository {
   EitherAppFailureOr<MovieDetails> fetchMovieDetails(String movieId) async {
     try {
       final detailResponse = await _apiClient.getMovieDetails(movieId);
-      return Right(detailResponse.fold(
-        (l) => MovieDetails.empty(),
-        (r) => r.toDomain(),
-      ));
+      return Right(detailResponse.toDomain());
     } catch (err) {
       return Left(Failure.badRequest.toAppFailure);
     }
