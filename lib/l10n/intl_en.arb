@@ -1,0 +1,17 @@
+{
+    "@@locale": "en",
+    "error_fetching_movies": "Error when fetching movie details",
+    "home": "Home",
+    "go_to_movies_screen": "Go to Movies screen",
+    "close": "Close",
+    "movie_app": "Movie App",
+    "error": "Error",
+    "load_movies": "Load Movies",
+    "try_again": "Try again",
+    "movie_details": "Movie Details",
+    "budget": "Budget: ",
+    "popularity_score": "Popularity Score: ",
+    "release_date": "Release Date: ",
+    "no_internet": "No Internet Connection"
+
+}

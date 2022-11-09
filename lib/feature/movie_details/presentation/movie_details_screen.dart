@@ -8,7 +8,9 @@ import 'package:test_app/feature/movie_details/domain/notifier/bottom_sheet_prov
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/movie_details/presentation/widget/row_widget.dart';
 import 'package:test_app/feature/movie_details/presentation/widget/text_style.dart';
+import 'package:test_app/generated/l10n.dart';
 
+//PRESENTATION LAYER
 class MovieDetailsScreen extends ConsumerWidget {
   const MovieDetailsScreen({
     super.key,
@@ -96,15 +98,15 @@ class DetailScreen extends ConsumerWidget {
                 height: 6,
               ),
               RowWidget(
-                firstInput: 'Budget: ',
+                firstInput: S.current.budget,
                 secondInput: movieDetails.budget.toString(),
               ),
               RowWidget(
-                firstInput: 'Popularity Score: ',
+                firstInput: S.current.popularity_score,
                 secondInput: movieDetails.popularity.toString(),
               ),
               RowWidget(
-                firstInput: 'Release Date: ',
+                firstInput: S.current.release_date,
                 secondInput: movieDetails.releaseDate.toString(),
               ),
             ],

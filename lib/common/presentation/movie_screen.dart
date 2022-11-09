@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/feature/popular_movies/presentation/movie_list.dart';
+import 'package:test_app/generated/l10n.dart';
 
 class MovieScreen extends ConsumerWidget {
   const MovieScreen({super.key});
@@ -11,7 +12,7 @@ class MovieScreen extends ConsumerWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('Movie App'),
+        title: Text(S.current.movie_app),
       ),
       body: Center(
         child: Column(

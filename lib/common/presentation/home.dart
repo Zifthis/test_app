@@ -1,7 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/common/presentation/movie_screen.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/bottom_sheet_provider.dart';
+import 'package:test_app/generated/l10n.dart';
+import 'package:test_app/router/app_router.gr.dart';
+
+//PRESENTATION LAYER
 
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
@@ -17,7 +21,9 @@ class _HomeState extends ConsumerState<Home> {
       shouldDisplayBottomSheet,
       (_, next) {
         if (next = true) {
-          _displayBottomSheet();
+          _displayBottomSheet(
+            S.current.error_fetching_movies,
+          );
         }
       },
     );
@@ -26,22 +32,16 @@ class _HomeState extends ConsumerState<Home> {
       backgroundColor: Colors.orangeAccent,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('Home'),
+        title: Text(S.current.home),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return const MovieScreen();
-                  }),
-                );
-              },
-              child: const Text('Go to Movies screen'),
+              onPressed: () =>
+                  context.router.pushNamed(const MovieScreen().path),
+              child: Text(S.current.go_to_movies_screen),
             ),
           ],
         ),
@@ -49,7 +49,7 @@ class _HomeState extends ConsumerState<Home> {
     );
   }
 
-  void _displayBottomSheet() async {
+  void _displayBottomSheet(String title) async {
     return showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) {
@@ -61,9 +61,9 @@ class _HomeState extends ConsumerState<Home> {
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  'Error when fetching movie details',
-                  style: TextStyle(
+                Text(
+                  title,
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -73,10 +73,8 @@ class _HomeState extends ConsumerState<Home> {
                   height: 8,
                 ),
                 ElevatedButton(
-                  child: const Text('Close BottomSheet'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  child: Text(S.current.close),
+                  onPressed: () => context.router.pop(),
                 ),
               ],
             ),
