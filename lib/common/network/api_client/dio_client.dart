@@ -4,18 +4,13 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:test_app/feature/movie_details/data/model/movie_details_response.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 
-//DATA LAYER
-
 final getApiClientProvider = Provider<DioClient>(
   (ref) => DioClient(),
 );
 
 class DioClient {
-  //Dio komunicira sa serverom, njegov zadatak je dohvati/prosljedit json podatke. - Dio komunicira sa DioClientom
-
   late final Dio _dio;
 
-  //DioClient prosljeđuje parametre/upite Dio-u te na temelju upita dobiva odgovor. - DioClient komunicira sa Repositroyiom preko providera: getApiClientProvider
   DioClient() {
     _dio = Dio(
       BaseOptions(
@@ -37,8 +32,6 @@ class DioClient {
     );
   }
 
-  //DioClient šalje GET upit koji sluzi za dohvat popular movies, odgovor/response dolazi u JSON formatu koji se mapira i parsira u MovieResponse objekte.
-  //error handling
   Future<MovieResponse> getMovieList() async {
     final response = await _dio.get('/movie/popular');
     final value = MovieResponse.fromJson(response.data);

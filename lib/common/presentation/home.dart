@@ -5,8 +5,6 @@ import 'package:test_app/feature/movie_details/domain/notifier/bottom_sheet_prov
 import 'package:test_app/generated/l10n.dart';
 import 'package:test_app/router/app_router.gr.dart';
 
-//PRESENTATION LAYER
-
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});
 
@@ -19,7 +17,7 @@ class _HomeState extends ConsumerState<Home> {
   Widget build(BuildContext context) {
     ref.listen<bool>(
       shouldDisplayBottomSheet,
-      (_, next) {
+      (prev, next) {
         if (next = true) {
           _displayBottomSheet(
             S.current.error_fetching_movies,

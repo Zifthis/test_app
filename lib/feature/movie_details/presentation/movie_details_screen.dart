@@ -10,7 +10,6 @@ import 'package:test_app/feature/movie_details/presentation/widget/row_widget.da
 import 'package:test_app/feature/movie_details/presentation/widget/text_style.dart';
 import 'package:test_app/generated/l10n.dart';
 
-//PRESENTATION LAYER
 class MovieDetailsScreen extends ConsumerWidget {
   const MovieDetailsScreen({
     super.key,
@@ -19,8 +18,6 @@ class MovieDetailsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final detailsState = ref.watch(getMovieDetailsNotifier);
-
-    //ref.listen za btm sheet onerror
 
     return Scaffold(
       body: detailsState.maybeWhen(

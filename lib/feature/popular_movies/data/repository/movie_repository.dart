@@ -8,10 +8,6 @@ import 'package:test_app/feature/movie_details/domain/entities/movie_details.dar
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 import 'package:test_app/feature/popular_movies/data/repository/i_movie_repository.dart';
 
-//DATA LAYER
-
-//MovieRepository koji implementira sučelje IMovieRepository, ovaj repo komunicira sa DioClientom koji se dohvaca preko providera: movieRepositoryProvider
-
 final movieRepositoryProvider = Provider<IMovieRepository>(
   (ref) => MovieRepository(ref.read(getApiClientProvider)),
 );
@@ -20,9 +16,6 @@ class MovieRepository implements IMovieRepository {
   final DioClient _apiClient;
 
   MovieRepository(this._apiClient);
-
-//funkicje sučelja se overrideaju potrebnom logikom, npr. getPopularResponse() funkcija provjerava dobiven response je validan pomocu EitherAppFailureOr.
-//ukoliko response nije validan vraća se Failure poruka i prazan objekt, dok kod validnog responsa dohvaćaju se mapirani json objekti unutar modele - MovieResponse.
 
   @override
   EitherAppFailureOr<MovieResponse> getPopularResponse() async {
