@@ -18,6 +18,7 @@ class DioClient implements IDioClient {
         baseUrl: 'https://api.themoviedb.org/3',
         queryParameters: {
           'api_key': '60bef4941fb1388049660e34731d867a',
+          'page': ''
         },
       ),
     );
@@ -44,6 +45,16 @@ class DioClient implements IDioClient {
   Future<MovieDetailsResponse> getMovieDetails(String id) async {
     final response = await _dio.get('/movie/$id');
     final value = MovieDetailsResponse.fromJson(response.data);
+    return value;
+  }
+
+  @override
+  Future<MovieResponse> getPagedMovieList(int page) async {
+    final response = await _dio.get(
+      '/movie/popular',
+      queryParameters: {'page': page.toString()},
+    );
+    final value = MovieResponse.fromJson(response.data);
     return value;
   }
 }

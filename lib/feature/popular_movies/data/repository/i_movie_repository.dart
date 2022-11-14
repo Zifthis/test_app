@@ -4,5 +4,6 @@ import 'package:test_app/feature/popular_movies/data/models/movie_response.dart'
 
 abstract class IMovieRepository {
   EitherAppFailureOr<MovieResponse> getPopularResponse();
+  EitherAppFailureOr<MovieResponse> getPagedPopularResponse(int page);
   EitherAppFailureOr<MovieDetails> fetchMovieDetails(String movieId);
 }

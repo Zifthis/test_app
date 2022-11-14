@@ -37,6 +37,24 @@ class MovieRepository implements IMovieRepository {
     try {
       final detailResponse = await _apiClient.getMovieDetails(movieId);
       return Right(detailResponse.toDomain());
+    } on DioError catch (error) {
+      final err = error;
+      err.response?.statusCode;
+      return Left(Failure.notFound.toAppFailure);
+    } catch (err) {
+      return Left(Failure.badRequest.toAppFailure);
+    }
+  }
+
+  @override
+  EitherAppFailureOr<MovieResponse> getPagedPopularResponse(int page) async {
+    try {
+      final popularResponse = await _apiClient.getPagedMovieList(page);
+      return Right(popularResponse);
+    } on DioError catch (error) {
+      final err = error;
+      err.response?.statusCode;
+      return Left(Failure.notFound.toAppFailure);
     } catch (err) {
       return Left(Failure.badRequest.toAppFailure);
     }

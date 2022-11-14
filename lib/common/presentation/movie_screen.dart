@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/feature/popular_movies/presentation/movie_list.dart';
+import 'package:test_app/feature/popular_movies/presentation/paged_movie_list.dart';
 import 'package:test_app/generated/l10n.dart';
 
 class MovieScreen extends ConsumerWidget {
@@ -17,7 +17,7 @@ class MovieScreen extends ConsumerWidget {
       body: Center(
         child: Column(
           children: const [
-            MovieList(),
+            PagedMovieList(),
           ],
         ),
       ),
