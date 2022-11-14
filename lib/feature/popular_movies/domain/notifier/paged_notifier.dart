@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/feature/popular_movies/data/repository/i_movie_repository.dart';
 import 'package:test_app/feature/popular_movies/data/repository/movie_repository.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier/paged_state.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/paged_state.dart';
 
 final getPagedMovieNotifier = StateNotifierProvider<PagedNotifier, PagedState>(
   (ref) => PagedNotifier(

@@ -1,79 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/common/domain/error/app_failure.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/movie_details/presentation/movie_details_screen.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/movie_notifier.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier/page_provder.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier/paged_notifier.dart';
-
-class PagedMovieList extends ConsumerStatefulWidget {
-  const PagedMovieList({super.key});
-
-  @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _PagedMovieListState();
-}
-
-class _PagedMovieListState extends ConsumerState<PagedMovieList> {
-  @override
-  Widget build(BuildContext context) {
-    final state = ref.watch(getPagedMovieNotifier);
-
-    return Expanded(
-      child: SizedBox(
-        child: state.maybeWhen(
-          initial: () => const InitialButton(),
-          error: (error) => ErrorButton(error: error),
-          loading: () => const Center(child: CircularProgressIndicator()),
-          loaded: (value) => MovieListView(movieResponse: value),
-          orElse: () => const Center(child: Text('Error')),
-        ),
-      ),
-    );
-  }
-}
-
-class InitialButton extends ConsumerWidget {
-  const InitialButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () =>
-            ref.read(getPagedMovieNotifier.notifier).fetchPagedMovies(1),
-        child: const Text('Load Movies'),
-      ),
-    );
-  }
-}
-
-class ErrorButton extends ConsumerWidget {
-  final AppFailure error;
-  const ErrorButton({
-    super.key,
-    required this.error,
-  });
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-      child: Column(
-        children: [
-          Text('Error: ${error.title}'),
-          const SizedBox(height: 8),
-          ElevatedButton(
-            onPressed: () => ref.read(getMovieNotifier.notifier).fetchMovies(),
-            child: const Text('Try again'),
-          ),
-        ],
-      ),
-    );
-  }
-}
+import 'package:test_app/feature/popular_movies/domain/notifier/page_provder.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier.dart';
 
 class MovieListView extends ConsumerWidget {
   final MovieResponse movieResponse;
