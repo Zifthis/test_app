@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/common/domain/error/app_failure.dart';
 import 'package:test_app/common/domain/error/error_handling.dart';
 import 'package:test_app/common/network/api_client/dio_client.dart';
+import 'package:test_app/common/network/api_client/i_dio_client.dart';
 import 'package:test_app/feature/movie_details/domain/entities/movie_details.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 import 'package:test_app/feature/popular_movies/data/repository/i_movie_repository.dart';
@@ -13,7 +14,7 @@ final movieRepositoryProvider = Provider<IMovieRepository>(
 );
 
 class MovieRepository implements IMovieRepository {
-  final DioClient _apiClient;
+  final IDioClient _apiClient;
 
   MovieRepository(this._apiClient);
 
