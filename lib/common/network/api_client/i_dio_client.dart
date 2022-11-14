@@ -3,6 +3,6 @@ import 'package:test_app/feature/popular_movies/data/models/movie_response.dart'
 
 abstract class IDioClient {
   Future<MovieResponse> getMovieList();
-  Future<MovieDetailsResponse> getMovieDetails(String id);
+  Future<MovieDetailsResponse> getMovieDetails(int page, int movieId);
   Future<MovieResponse> getPagedMovieList(int page);
 }

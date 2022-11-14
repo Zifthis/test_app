@@ -17,9 +17,9 @@ class MovieDetailsNotifier extends StateNotifier<MovieDetailsState> {
     this._iMovieDetailsRepo,
   ) : super(const MovieDetailsState.initial());
 
-  Future<void> getMovieDetails(String movieId) async {
+  Future<void> getMovieDetails(int page, int movieId) async {
     state = const MovieDetailsState.loading();
-    final movie = await _iMovieDetailsRepo.fetchMovieDetails(movieId);
+    final movie = await _iMovieDetailsRepo.fetchMovieDetails(page, movieId);
     state = movie.fold(
       (l) => MovieDetailsState.error(l),
       (r) => MovieDetailsState.loaded(r),

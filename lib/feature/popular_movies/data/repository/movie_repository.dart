@@ -33,9 +33,10 @@ class MovieRepository implements IMovieRepository {
   }
 
   @override
-  EitherAppFailureOr<MovieDetails> fetchMovieDetails(String movieId) async {
+  EitherAppFailureOr<MovieDetails> fetchMovieDetails(
+      int page, int movieId) async {
     try {
-      final detailResponse = await _apiClient.getMovieDetails(movieId);
+      final detailResponse = await _apiClient.getMovieDetails(page, movieId);
       return Right(detailResponse.toDomain());
     } on DioError catch (error) {
       final err = error;

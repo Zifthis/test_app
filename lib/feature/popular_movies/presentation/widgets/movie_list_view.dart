@@ -28,7 +28,10 @@ class MovieListView extends ConsumerWidget {
                   color: Colors.white,
                   child: InkWell(
                     onTap: () => _onTapButton(
-                        context, ref, movieResponse.result?[index].id ?? 0),
+                      context,
+                      ref,
+                      movieResponse.result?[index].id ?? 0,
+                    ),
                     child: ListTile(
                       leading: const Icon(Icons.movie),
                       trailing: Text(
@@ -49,7 +52,7 @@ class MovieListView extends ConsumerWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(38.0),
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
           child: ElevatedButton(
               onPressed: () => ref
                   .read(getPagedMovieNotifier.notifier)
@@ -60,10 +63,10 @@ class MovieListView extends ConsumerWidget {
     );
   }
 
-  void _onTapButton(BuildContext context, WidgetRef ref, int index) async {
+  void _onTapButton(BuildContext context, WidgetRef ref, int movieId) async {
     ref
         .read(getMovieDetailsNotifier.notifier)
-        .getMovieDetails(index.toString());
+        .getMovieDetails(ref.read(setPageProvider), movieId);
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
