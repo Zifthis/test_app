@@ -56,7 +56,7 @@ class MovieListView extends ConsumerWidget {
           child: ElevatedButton(
               onPressed: () => ref
                   .read(getPagedMovieNotifier.notifier)
-                  .fetchPagedMovies(ref.read(setPageProvider.notifier).state++),
+                  .fetchMovies(ref.read(setPageProvider.notifier).state++),
               child: const Text('load more')),
         )
       ],

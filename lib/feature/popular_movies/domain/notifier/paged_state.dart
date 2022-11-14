@@ -11,5 +11,8 @@ class PagedState with _$PagedState {
   const factory PagedState.loaded(
     MovieResponse movieResponse,
   ) = _PagedStateLoaded;
+  const factory PagedState.filterResult(
+    List<Result> results,
+  ) = _PagedStateFilterResult;
   const factory PagedState.error(AppFailure error) = _PagedStateError;
 }
