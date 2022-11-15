@@ -4,10 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/page_provder.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/page_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier.dart';
 import 'package:test_app/feature/popular_movies/presentation/widgets/error_button.dart';
 import 'package:test_app/feature/popular_movies/presentation/widgets/initial_button.dart';
+import 'package:test_app/feature/popular_movies/presentation/widgets/list_tile_widget.dart';
 import 'package:test_app/router/app_router.gr.dart';
 
 class MovieList extends ConsumerWidget {
@@ -44,74 +45,44 @@ class MovieListView extends ConsumerStatefulWidget {
 }
 
 class _MovieListViewState extends ConsumerState<MovieListView> {
-  static const _pageSize = 20;
   final PagingController<int, Result> _pagingController =
       PagingController(firstPageKey: 1);
 
   @override
   void initState() {
-    _pagingController.addPageRequestListener((pageKey) {
-      _fetchPage(pageKey);
-    });
-
+    Future.delayed(
+      Duration.zero,
+      () => _pagingController.addPageRequestListener(
+        (pageKey) async {
+          await _getPageState(pageKey);
+        },
+      ),
+    );
     super.initState();
-  }
-
-  Future<void> _fetchPage(int pageKey) async {
-    try {
-      final newItems = widget.movieResponse.result;
-      final isLastPage = newItems!.length < _pageSize;
-      if (isLastPage) {
-        _pagingController.appendLastPage(newItems);
-      } else {
-        final nextPageKey = pageKey + newItems.length;
-
-        _pagingController.appendPage(newItems, nextPageKey);
-      }
-    } catch (error) {
-      _pagingController.error = error;
-    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, Result>(
-      pagingController: _pagingController,
-      builderDelegate: PagedChildBuilderDelegate<Result>(
-        itemBuilder: (context, item, index) => SizedBox(
-          height: MediaQuery.of(context).size.height,
-          child: ListView.builder(
-            itemCount: widget.movieResponse.result?.length ?? 0,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ColoredBox(
-                  color: Colors.white,
-                  child: InkWell(
-                    onTap: () => _onTapButton(
-                      context,
-                      ref,
-                      widget.movieResponse.result?[index].id ?? 0,
-                    ),
-                    child: ListTile(
-                      leading: const Icon(Icons.movie),
-                      trailing: Text(
-                        widget.movieResponse.result?[index].voteAverage
-                                .toString() ??
-                            '',
-                        style: const TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15,
-                        ),
-                      ),
-                      title: Text(widget.movieResponse.result?[index].title
-                              .toString() ??
-                          ''),
-                    ),
-                  ),
-                ),
-              );
-            },
+    return RefreshIndicator(
+      onRefresh: () => Future.sync(
+        () => _pagingController.refresh(),
+      ),
+      child: PagedListView<int, Result>(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<Result>(
+          animateTransitions: true,
+          itemBuilder: (context, item, index) => InkWell(
+            onTap: () => _onTapButton(
+              context,
+              ref,
+              item.id ?? 0,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTileWidget(
+                results: item,
+              ),
+            ),
           ),
         ),
       ),
@@ -129,5 +100,11 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
         .read(getMovieDetailsNotifier.notifier)
         .getMovieDetails(ref.read(setPageProvider), movieId);
     context.router.pushNamed(const MovieDetailsScreen().path);
+  }
+
+  Future<void> _getPageState(page) async {
+    await ref
+        .read(getPagedMovieNotifier.notifier)
+        .fetchPagedMovies(page, _pagingController);
   }
 }

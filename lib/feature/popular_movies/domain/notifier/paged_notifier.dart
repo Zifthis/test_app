@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 import 'package:test_app/feature/popular_movies/data/repository/i_movie_repository.dart';
 import 'package:test_app/feature/popular_movies/data/repository/movie_repository.dart';
@@ -28,12 +29,25 @@ class PagedNotifier extends StateNotifier<PagedState> {
     );
   }
 
-  Future<List<Result>> fetchMoviesList(int page) async {
+  Future<void> fetchPagedMovies(
+    int page,
+    PagingController<int, Result> controller,
+  ) async {
     state = const PagedState.loading();
     final movie = await _movieRepository.getPagedPopularResponse(page);
-    return movie.fold(
-      (error) => [],
-      (data) => data.result!,
+    state = movie.fold(
+      (error) => PagedState.pagingController(controller.error),
+      (data) {
+        final newItems = data.result!;
+        final isLastPage = newItems.length <= 20;
+        if (isLastPage) {
+          controller.appendLastPage(newItems);
+        } else {
+          final nextPageKey = page + newItems.length;
+          controller.appendPage(newItems, nextPageKey);
+        }
+        return PagedState.pagingController(controller);
+      },
     );
   }
 
