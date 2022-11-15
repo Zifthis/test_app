@@ -23,8 +23,17 @@ class PagedNotifier extends StateNotifier<PagedState> {
     state = const PagedState.loading();
     final movie = await _movieRepository.getPagedPopularResponse(page);
     state = movie.fold(
-      (l) => PagedState.error(l),
-      (r) => PagedState.loaded(r),
+      (error) => PagedState.error(error),
+      (data) => PagedState.loaded(data),
+    );
+  }
+
+  Future<List<Result>> fetchMoviesList(int page) async {
+    state = const PagedState.loading();
+    final movie = await _movieRepository.getPagedPopularResponse(page);
+    return movie.fold(
+      (error) => [],
+      (data) => data.result!,
     );
   }
 
@@ -32,11 +41,12 @@ class PagedNotifier extends StateNotifier<PagedState> {
     state = const PagedState.loading();
     final movie = await _movieRepository.getPagedPopularResponse(page);
     state = movie.fold(
-      (l) => PagedState.error(l),
-      (r) => PagedState.loaded(
+      (error) => PagedState.error(error),
+      (data) => PagedState.loaded(
         MovieResponse(
           page: page,
-          result: r.result?.where((e) => e.popularity!.round() < 1000).toList(),
+          result:
+              data.result?.where((e) => e.popularity!.round() < 1000).toList(),
         ),
       ),
     );
@@ -46,11 +56,12 @@ class PagedNotifier extends StateNotifier<PagedState> {
     state = const PagedState.loading();
     final movie = await _movieRepository.getPagedPopularResponse(page);
     state = movie.fold(
-      (l) => PagedState.error(l),
-      (r) => PagedState.loaded(
+      (error) => PagedState.error(error),
+      (data) => PagedState.loaded(
         MovieResponse(
           page: page,
-          result: r.result?.where((e) => e.language!.contains('en')).toList(),
+          result:
+              data.result?.where((e) => e.language!.contains('en')).toList(),
         ),
       ),
     );

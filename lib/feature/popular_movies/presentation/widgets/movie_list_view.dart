@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/movie_details/presentation/movie_details_screen.dart';
@@ -75,3 +75,4 @@ class MovieListView extends ConsumerWidget {
     );
   }
 }
+*/
