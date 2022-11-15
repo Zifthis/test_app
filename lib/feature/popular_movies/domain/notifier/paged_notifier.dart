@@ -29,26 +29,23 @@ class PagedNotifier extends StateNotifier<PagedState> {
     );
   }
 
-  Future<void> fetchPagedMovies(
+  Future<void> fetchPagedMoviesList(
     int page,
     PagingController<int, Result> controller,
+    MovieResponse movieResponse,
   ) async {
-    state = const PagedState.loading();
-    final movie = await _movieRepository.getPagedPopularResponse(page);
-    state = movie.fold(
-      (error) => PagedState.pagingController(controller.error),
-      (data) {
-        final newItems = data.result!;
-        final isLastPage = newItems.length <= 20;
-        if (isLastPage) {
-          controller.appendLastPage(newItems);
-        } else {
-          final nextPageKey = page + newItems.length;
-          controller.appendPage(newItems, nextPageKey);
-        }
-        return PagedState.pagingController(controller);
-      },
-    );
+    try {
+      final newItems = movieResponse.result!;
+      final isLastPage = newItems.length <= 20;
+      if (isLastPage) {
+        controller.appendLastPage(newItems);
+      } else {
+        final nextPageKey = page + newItems.length;
+        controller.appendPage(newItems, nextPageKey);
+      }
+    } catch (err) {
+      controller.error = err;
+    }
   }
 
   Future<void> fetchPopularMovies(int page) async {
@@ -60,7 +57,7 @@ class PagedNotifier extends StateNotifier<PagedState> {
         MovieResponse(
           page: page,
           result:
-              data.result?.where((e) => e.popularity!.round() < 1000).toList(),
+              data.result?.where((e) => e.popularity!.round() > 1500).toList(),
         ),
       ),
     );

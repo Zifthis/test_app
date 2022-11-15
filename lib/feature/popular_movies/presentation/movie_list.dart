@@ -50,14 +50,13 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
 
   @override
   void initState() {
-    Future.delayed(
-      Duration.zero,
-      () => _pagingController.addPageRequestListener(
-        (pageKey) async {
-          await _getPageState(pageKey);
-        },
-      ),
-    );
+    _pagingController.addPageRequestListener((pageKey) {
+      ref.read(getPagedMovieNotifier.notifier).fetchPagedMoviesList(
+          pageKey, _pagingController, widget.movieResponse);
+      print('-----------');
+      print(pageKey);
+    });
+
     super.initState();
   }
 
@@ -100,11 +99,5 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
         .read(getMovieDetailsNotifier.notifier)
         .getMovieDetails(ref.read(setPageProvider), movieId);
     context.router.pushNamed(const MovieDetailsScreen().path);
-  }
-
-  Future<void> _getPageState(page) async {
-    await ref
-        .read(getPagedMovieNotifier.notifier)
-        .fetchPagedMovies(page, _pagingController);
   }
 }
