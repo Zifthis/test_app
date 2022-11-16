@@ -37,7 +37,6 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
     _pagingController.addPageRequestListener((pageKey) {
       ref.read(getPagedMovieNotifier.notifier).fetchPagedMoviesList(pageKey);
     });
-
     super.initState();
   }
 
@@ -47,20 +46,8 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
       getPagedMovieNotifier,
       (_, next) {
         next.maybeMap(
-          pagingLoaded: (value) {
-            try {
-              final newItems = value.result;
-              final isLastPage = newItems.length < 20;
-              if (isLastPage) {
-                _pagingController.appendLastPage(newItems);
-              } else {
-                final nextPageKey = ref.read(setPageProvider.notifier).state++;
-                _pagingController.appendPage(newItems, nextPageKey);
-              }
-            } catch (error) {
-              _pagingController.error = error;
-            }
-          },
+          pagingLoaded: (value) => _provideState(value.result, ref),
+          error: (error) => _pagingController.error = error,
           orElse: () {},
         );
       },
@@ -96,6 +83,20 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
   void dispose() {
     _pagingController.dispose();
     super.dispose();
+  }
+
+  void _provideState(List<Result> list, WidgetRef ref) {
+    final newItems = list;
+    final isLastPage = newItems.length < 20;
+    if (isLastPage) {
+      _pagingController.appendLastPage(newItems);
+    } else {
+      final nextPageKey = ref.read(setPageProvider.notifier).state++;
+      _pagingController.appendPage(
+          // newItems.getRange(0, 3).toList(), nextPageKey);
+          newItems,
+          nextPageKey);
+    }
   }
 
   void _onTapButton(BuildContext context, WidgetRef ref, int movieId) async {

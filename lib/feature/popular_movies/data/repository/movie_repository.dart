@@ -50,6 +50,7 @@ class MovieRepository implements IMovieRepository {
   @override
   EitherAppFailureOr<List<Result>> fetchPagedMovieResponse(int page) async {
     try {
+      //throw DioError(requestOptions: RequestOptions(path: ''));
       final popularResponse = await _apiClient.getPagedMovieList(page);
       return Right(popularResponse);
     } on DioError catch (error) {
