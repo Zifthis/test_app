@@ -45,19 +45,19 @@ class DioClient implements IDioClient {
   Future<MovieDetailsResponse> getMovieDetails(int page, int movieId) async {
     final response = await _dio.get(
       '/movie/$movieId',
-      queryParameters: {'page': page.toString()},
+      queryParameters: {'page': page},
     );
     final value = MovieDetailsResponse.fromJson(response.data);
     return value;
   }
 
   @override
-  Future<MovieResponse> getPagedMovieList(int page) async {
+  Future<List<Result>> getPagedMovieList(int page) async {
     final response = await _dio.get(
       '/movie/popular',
-      queryParameters: {'page': page.toString()},
+      queryParameters: {'page': page},
     );
     final value = MovieResponse.fromJson(response.data);
-    return value;
+    return value.result!;
   }
 }

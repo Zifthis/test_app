@@ -21,8 +21,7 @@ mixin _$PagedState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(PagingController<int, Result> pagingController)
-        pagingController,
+    required TResult Function(List<Result> result) pagingLoaded,
     required TResult Function(AppFailure error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,8 +30,7 @@ mixin _$PagedState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult? Function(List<Result> result)? pagingLoaded,
     TResult? Function(AppFailure error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,8 +39,7 @@ mixin _$PagedState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult Function(List<Result> result)? pagingLoaded,
     TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) =>
@@ -52,8 +49,7 @@ mixin _$PagedState {
     required TResult Function(_PagedStateInitial value) initial,
     required TResult Function(_PagedStateLoading value) loading,
     required TResult Function(_PagedStateLoaded value) loaded,
-    required TResult Function(_PagedStatePagingController value)
-        pagingController,
+    required TResult Function(_PagedStatePagingLoaded value) pagingLoaded,
     required TResult Function(_PagedStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,7 +58,7 @@ mixin _$PagedState {
     TResult? Function(_PagedStateInitial value)? initial,
     TResult? Function(_PagedStateLoading value)? loading,
     TResult? Function(_PagedStateLoaded value)? loaded,
-    TResult? Function(_PagedStatePagingController value)? pagingController,
+    TResult? Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult? Function(_PagedStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -71,7 +67,7 @@ mixin _$PagedState {
     TResult Function(_PagedStateInitial value)? initial,
     TResult Function(_PagedStateLoading value)? loading,
     TResult Function(_PagedStateLoaded value)? loaded,
-    TResult Function(_PagedStatePagingController value)? pagingController,
+    TResult Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult Function(_PagedStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -137,8 +133,7 @@ class _$_PagedStateInitial implements _PagedStateInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(PagingController<int, Result> pagingController)
-        pagingController,
+    required TResult Function(List<Result> result) pagingLoaded,
     required TResult Function(AppFailure error) error,
   }) {
     return initial();
@@ -150,8 +145,7 @@ class _$_PagedStateInitial implements _PagedStateInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult? Function(List<Result> result)? pagingLoaded,
     TResult? Function(AppFailure error)? error,
   }) {
     return initial?.call();
@@ -163,8 +157,7 @@ class _$_PagedStateInitial implements _PagedStateInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult Function(List<Result> result)? pagingLoaded,
     TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
@@ -180,8 +173,7 @@ class _$_PagedStateInitial implements _PagedStateInitial {
     required TResult Function(_PagedStateInitial value) initial,
     required TResult Function(_PagedStateLoading value) loading,
     required TResult Function(_PagedStateLoaded value) loaded,
-    required TResult Function(_PagedStatePagingController value)
-        pagingController,
+    required TResult Function(_PagedStatePagingLoaded value) pagingLoaded,
     required TResult Function(_PagedStateError value) error,
   }) {
     return initial(this);
@@ -193,7 +185,7 @@ class _$_PagedStateInitial implements _PagedStateInitial {
     TResult? Function(_PagedStateInitial value)? initial,
     TResult? Function(_PagedStateLoading value)? loading,
     TResult? Function(_PagedStateLoaded value)? loaded,
-    TResult? Function(_PagedStatePagingController value)? pagingController,
+    TResult? Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult? Function(_PagedStateError value)? error,
   }) {
     return initial?.call(this);
@@ -205,7 +197,7 @@ class _$_PagedStateInitial implements _PagedStateInitial {
     TResult Function(_PagedStateInitial value)? initial,
     TResult Function(_PagedStateLoading value)? loading,
     TResult Function(_PagedStateLoaded value)? loaded,
-    TResult Function(_PagedStatePagingController value)? pagingController,
+    TResult Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult Function(_PagedStateError value)? error,
     required TResult orElse(),
   }) {
@@ -261,8 +253,7 @@ class _$_PagedStateLoading implements _PagedStateLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(PagingController<int, Result> pagingController)
-        pagingController,
+    required TResult Function(List<Result> result) pagingLoaded,
     required TResult Function(AppFailure error) error,
   }) {
     return loading();
@@ -274,8 +265,7 @@ class _$_PagedStateLoading implements _PagedStateLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult? Function(List<Result> result)? pagingLoaded,
     TResult? Function(AppFailure error)? error,
   }) {
     return loading?.call();
@@ -287,8 +277,7 @@ class _$_PagedStateLoading implements _PagedStateLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult Function(List<Result> result)? pagingLoaded,
     TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
@@ -304,8 +293,7 @@ class _$_PagedStateLoading implements _PagedStateLoading {
     required TResult Function(_PagedStateInitial value) initial,
     required TResult Function(_PagedStateLoading value) loading,
     required TResult Function(_PagedStateLoaded value) loaded,
-    required TResult Function(_PagedStatePagingController value)
-        pagingController,
+    required TResult Function(_PagedStatePagingLoaded value) pagingLoaded,
     required TResult Function(_PagedStateError value) error,
   }) {
     return loading(this);
@@ -317,7 +305,7 @@ class _$_PagedStateLoading implements _PagedStateLoading {
     TResult? Function(_PagedStateInitial value)? initial,
     TResult? Function(_PagedStateLoading value)? loading,
     TResult? Function(_PagedStateLoaded value)? loaded,
-    TResult? Function(_PagedStatePagingController value)? pagingController,
+    TResult? Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult? Function(_PagedStateError value)? error,
   }) {
     return loading?.call(this);
@@ -329,7 +317,7 @@ class _$_PagedStateLoading implements _PagedStateLoading {
     TResult Function(_PagedStateInitial value)? initial,
     TResult Function(_PagedStateLoading value)? loading,
     TResult Function(_PagedStateLoaded value)? loaded,
-    TResult Function(_PagedStatePagingController value)? pagingController,
+    TResult Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult Function(_PagedStateError value)? error,
     required TResult orElse(),
   }) {
@@ -412,8 +400,7 @@ class _$_PagedStateLoaded implements _PagedStateLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(PagingController<int, Result> pagingController)
-        pagingController,
+    required TResult Function(List<Result> result) pagingLoaded,
     required TResult Function(AppFailure error) error,
   }) {
     return loaded(movieResponse);
@@ -425,8 +412,7 @@ class _$_PagedStateLoaded implements _PagedStateLoaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult? Function(List<Result> result)? pagingLoaded,
     TResult? Function(AppFailure error)? error,
   }) {
     return loaded?.call(movieResponse);
@@ -438,8 +424,7 @@ class _$_PagedStateLoaded implements _PagedStateLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult Function(List<Result> result)? pagingLoaded,
     TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
@@ -455,8 +440,7 @@ class _$_PagedStateLoaded implements _PagedStateLoaded {
     required TResult Function(_PagedStateInitial value) initial,
     required TResult Function(_PagedStateLoading value) loading,
     required TResult Function(_PagedStateLoaded value) loaded,
-    required TResult Function(_PagedStatePagingController value)
-        pagingController,
+    required TResult Function(_PagedStatePagingLoaded value) pagingLoaded,
     required TResult Function(_PagedStateError value) error,
   }) {
     return loaded(this);
@@ -468,7 +452,7 @@ class _$_PagedStateLoaded implements _PagedStateLoaded {
     TResult? Function(_PagedStateInitial value)? initial,
     TResult? Function(_PagedStateLoading value)? loading,
     TResult? Function(_PagedStateLoaded value)? loaded,
-    TResult? Function(_PagedStatePagingController value)? pagingController,
+    TResult? Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult? Function(_PagedStateError value)? error,
   }) {
     return loaded?.call(this);
@@ -480,7 +464,7 @@ class _$_PagedStateLoaded implements _PagedStateLoaded {
     TResult Function(_PagedStateInitial value)? initial,
     TResult Function(_PagedStateLoading value)? loading,
     TResult Function(_PagedStateLoaded value)? loaded,
-    TResult Function(_PagedStatePagingController value)? pagingController,
+    TResult Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult Function(_PagedStateError value)? error,
     required TResult orElse(),
   }) {
@@ -502,69 +486,71 @@ abstract class _PagedStateLoaded implements PagedState {
 }
 
 /// @nodoc
-abstract class _$$_PagedStatePagingControllerCopyWith<$Res> {
-  factory _$$_PagedStatePagingControllerCopyWith(
-          _$_PagedStatePagingController value,
-          $Res Function(_$_PagedStatePagingController) then) =
-      __$$_PagedStatePagingControllerCopyWithImpl<$Res>;
+abstract class _$$_PagedStatePagingLoadedCopyWith<$Res> {
+  factory _$$_PagedStatePagingLoadedCopyWith(_$_PagedStatePagingLoaded value,
+          $Res Function(_$_PagedStatePagingLoaded) then) =
+      __$$_PagedStatePagingLoadedCopyWithImpl<$Res>;
   @useResult
-  $Res call({PagingController<int, Result> pagingController});
+  $Res call({List<Result> result});
 }
 
 /// @nodoc
-class __$$_PagedStatePagingControllerCopyWithImpl<$Res>
-    extends _$PagedStateCopyWithImpl<$Res, _$_PagedStatePagingController>
-    implements _$$_PagedStatePagingControllerCopyWith<$Res> {
-  __$$_PagedStatePagingControllerCopyWithImpl(
-      _$_PagedStatePagingController _value,
-      $Res Function(_$_PagedStatePagingController) _then)
+class __$$_PagedStatePagingLoadedCopyWithImpl<$Res>
+    extends _$PagedStateCopyWithImpl<$Res, _$_PagedStatePagingLoaded>
+    implements _$$_PagedStatePagingLoadedCopyWith<$Res> {
+  __$$_PagedStatePagingLoadedCopyWithImpl(_$_PagedStatePagingLoaded _value,
+      $Res Function(_$_PagedStatePagingLoaded) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pagingController = null,
+    Object? result = null,
   }) {
-    return _then(_$_PagedStatePagingController(
-      null == pagingController
-          ? _value.pagingController
-          : pagingController // ignore: cast_nullable_to_non_nullable
-              as PagingController<int, Result>,
+    return _then(_$_PagedStatePagingLoaded(
+      null == result
+          ? _value._result
+          : result // ignore: cast_nullable_to_non_nullable
+              as List<Result>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_PagedStatePagingController implements _PagedStatePagingController {
-  const _$_PagedStatePagingController(this.pagingController);
+class _$_PagedStatePagingLoaded implements _PagedStatePagingLoaded {
+  const _$_PagedStatePagingLoaded(final List<Result> result) : _result = result;
 
+  final List<Result> _result;
   @override
-  final PagingController<int, Result> pagingController;
+  List<Result> get result {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_result);
+  }
 
   @override
   String toString() {
-    return 'PagedState.pagingController(pagingController: $pagingController)';
+    return 'PagedState.pagingLoaded(result: $result)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PagedStatePagingController &&
-            (identical(other.pagingController, pagingController) ||
-                other.pagingController == pagingController));
+            other is _$_PagedStatePagingLoaded &&
+            const DeepCollectionEquality().equals(other._result, _result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, pagingController);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_result));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PagedStatePagingControllerCopyWith<_$_PagedStatePagingController>
-      get copyWith => __$$_PagedStatePagingControllerCopyWithImpl<
-          _$_PagedStatePagingController>(this, _$identity);
+  _$$_PagedStatePagingLoadedCopyWith<_$_PagedStatePagingLoaded> get copyWith =>
+      __$$_PagedStatePagingLoadedCopyWithImpl<_$_PagedStatePagingLoaded>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -572,11 +558,10 @@ class _$_PagedStatePagingController implements _PagedStatePagingController {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(PagingController<int, Result> pagingController)
-        pagingController,
+    required TResult Function(List<Result> result) pagingLoaded,
     required TResult Function(AppFailure error) error,
   }) {
-    return pagingController(this.pagingController);
+    return pagingLoaded(result);
   }
 
   @override
@@ -585,11 +570,10 @@ class _$_PagedStatePagingController implements _PagedStatePagingController {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult? Function(List<Result> result)? pagingLoaded,
     TResult? Function(AppFailure error)? error,
   }) {
-    return pagingController?.call(this.pagingController);
+    return pagingLoaded?.call(result);
   }
 
   @override
@@ -598,13 +582,12 @@ class _$_PagedStatePagingController implements _PagedStatePagingController {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult Function(List<Result> result)? pagingLoaded,
     TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
-    if (pagingController != null) {
-      return pagingController(this.pagingController);
+    if (pagingLoaded != null) {
+      return pagingLoaded(result);
     }
     return orElse();
   }
@@ -615,11 +598,10 @@ class _$_PagedStatePagingController implements _PagedStatePagingController {
     required TResult Function(_PagedStateInitial value) initial,
     required TResult Function(_PagedStateLoading value) loading,
     required TResult Function(_PagedStateLoaded value) loaded,
-    required TResult Function(_PagedStatePagingController value)
-        pagingController,
+    required TResult Function(_PagedStatePagingLoaded value) pagingLoaded,
     required TResult Function(_PagedStateError value) error,
   }) {
-    return pagingController(this);
+    return pagingLoaded(this);
   }
 
   @override
@@ -628,10 +610,10 @@ class _$_PagedStatePagingController implements _PagedStatePagingController {
     TResult? Function(_PagedStateInitial value)? initial,
     TResult? Function(_PagedStateLoading value)? loading,
     TResult? Function(_PagedStateLoaded value)? loaded,
-    TResult? Function(_PagedStatePagingController value)? pagingController,
+    TResult? Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult? Function(_PagedStateError value)? error,
   }) {
-    return pagingController?.call(this);
+    return pagingLoaded?.call(this);
   }
 
   @override
@@ -640,26 +622,25 @@ class _$_PagedStatePagingController implements _PagedStatePagingController {
     TResult Function(_PagedStateInitial value)? initial,
     TResult Function(_PagedStateLoading value)? loading,
     TResult Function(_PagedStateLoaded value)? loaded,
-    TResult Function(_PagedStatePagingController value)? pagingController,
+    TResult Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult Function(_PagedStateError value)? error,
     required TResult orElse(),
   }) {
-    if (pagingController != null) {
-      return pagingController(this);
+    if (pagingLoaded != null) {
+      return pagingLoaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _PagedStatePagingController implements PagedState {
-  const factory _PagedStatePagingController(
-          final PagingController<int, Result> pagingController) =
-      _$_PagedStatePagingController;
+abstract class _PagedStatePagingLoaded implements PagedState {
+  const factory _PagedStatePagingLoaded(final List<Result> result) =
+      _$_PagedStatePagingLoaded;
 
-  PagingController<int, Result> get pagingController;
+  List<Result> get result;
   @JsonKey(ignore: true)
-  _$$_PagedStatePagingControllerCopyWith<_$_PagedStatePagingController>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_PagedStatePagingLoadedCopyWith<_$_PagedStatePagingLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -729,8 +710,7 @@ class _$_PagedStateError implements _PagedStateError {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(MovieResponse movieResponse) loaded,
-    required TResult Function(PagingController<int, Result> pagingController)
-        pagingController,
+    required TResult Function(List<Result> result) pagingLoaded,
     required TResult Function(AppFailure error) error,
   }) {
     return error(this.error);
@@ -742,8 +722,7 @@ class _$_PagedStateError implements _PagedStateError {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(MovieResponse movieResponse)? loaded,
-    TResult? Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult? Function(List<Result> result)? pagingLoaded,
     TResult? Function(AppFailure error)? error,
   }) {
     return error?.call(this.error);
@@ -755,8 +734,7 @@ class _$_PagedStateError implements _PagedStateError {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(MovieResponse movieResponse)? loaded,
-    TResult Function(PagingController<int, Result> pagingController)?
-        pagingController,
+    TResult Function(List<Result> result)? pagingLoaded,
     TResult Function(AppFailure error)? error,
     required TResult orElse(),
   }) {
@@ -772,8 +750,7 @@ class _$_PagedStateError implements _PagedStateError {
     required TResult Function(_PagedStateInitial value) initial,
     required TResult Function(_PagedStateLoading value) loading,
     required TResult Function(_PagedStateLoaded value) loaded,
-    required TResult Function(_PagedStatePagingController value)
-        pagingController,
+    required TResult Function(_PagedStatePagingLoaded value) pagingLoaded,
     required TResult Function(_PagedStateError value) error,
   }) {
     return error(this);
@@ -785,7 +762,7 @@ class _$_PagedStateError implements _PagedStateError {
     TResult? Function(_PagedStateInitial value)? initial,
     TResult? Function(_PagedStateLoading value)? loading,
     TResult? Function(_PagedStateLoaded value)? loaded,
-    TResult? Function(_PagedStatePagingController value)? pagingController,
+    TResult? Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult? Function(_PagedStateError value)? error,
   }) {
     return error?.call(this);
@@ -797,7 +774,7 @@ class _$_PagedStateError implements _PagedStateError {
     TResult Function(_PagedStateInitial value)? initial,
     TResult Function(_PagedStateLoading value)? loading,
     TResult Function(_PagedStateLoaded value)? loaded,
-    TResult Function(_PagedStatePagingController value)? pagingController,
+    TResult Function(_PagedStatePagingLoaded value)? pagingLoaded,
     TResult Function(_PagedStateError value)? error,
     required TResult orElse(),
   }) {

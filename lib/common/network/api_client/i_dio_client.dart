@@ -4,5 +4,5 @@ import 'package:test_app/feature/popular_movies/data/models/movie_response.dart'
 abstract class IDioClient {
   Future<MovieResponse> getMovieList();
   Future<MovieDetailsResponse> getMovieDetails(int page, int movieId);
-  Future<MovieResponse> getPagedMovieList(int page);
+  Future<List<Result>> getPagedMovieList(int page);
 }

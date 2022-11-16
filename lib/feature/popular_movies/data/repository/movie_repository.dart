@@ -48,7 +48,7 @@ class MovieRepository implements IMovieRepository {
   }
 
   @override
-  EitherAppFailureOr<MovieResponse> getPagedPopularResponse(int page) async {
+  EitherAppFailureOr<List<Result>> fetchPagedMovieResponse(int page) async {
     try {
       final popularResponse = await _apiClient.getPagedMovieList(page);
       return Right(popularResponse);

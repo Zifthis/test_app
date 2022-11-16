@@ -61,7 +61,7 @@ class MovieScreen extends ConsumerWidget {
 
   void _getPopularity(WidgetRef ref) {
     ref
-        .read(getPagedMovieNotifier.notifier)
+        .watch(getPagedMovieNotifier.notifier)
         .fetchPopularMovies(ref.read(setPageProvider));
   }
 
@@ -74,6 +74,6 @@ class MovieScreen extends ConsumerWidget {
   void _clearFilter(WidgetRef ref) {
     ref
         .read(getPagedMovieNotifier.notifier)
-        .fetchMovies(ref.read(setPageProvider));
+        .fetchPagedMoviesList(ref.read(setPageProvider));
   }
 }

@@ -6,38 +6,22 @@ import 'package:test_app/feature/movie_details/domain/notifier/movie_details_not
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/page_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier.dart';
-import 'package:test_app/feature/popular_movies/presentation/widgets/error_button.dart';
-import 'package:test_app/feature/popular_movies/presentation/widgets/initial_button.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/paged_state.dart';
 import 'package:test_app/feature/popular_movies/presentation/widgets/list_tile_widget.dart';
 import 'package:test_app/router/app_router.gr.dart';
 
-class MovieList extends ConsumerWidget {
-  const MovieList({super.key});
+class MovieList extends StatelessWidget {
+  const MovieList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(getPagedMovieNotifier);
-
-    return Expanded(
-      child: SizedBox(
-        child: state.maybeWhen(
-          initial: () => const InitialButton(),
-          error: (error) => ErrorButton(error: error),
-          loading: () => const Center(child: CircularProgressIndicator()),
-          loaded: (value) => MovieListView(movieResponse: value),
-          orElse: () => const Center(child: Text('Error')),
-        ),
-      ),
-    );
+  Widget build(BuildContext context) {
+    return const Expanded(child: MovieListView());
   }
 }
 
 class MovieListView extends ConsumerStatefulWidget {
-  final MovieResponse movieResponse;
-
   const MovieListView({
     super.key,
-    required this.movieResponse,
   });
 
   @override
@@ -51,10 +35,7 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
-      ref.read(getPagedMovieNotifier.notifier).fetchPagedMoviesList(
-          pageKey, _pagingController, widget.movieResponse);
-      print('-----------');
-      print(pageKey);
+      ref.read(getPagedMovieNotifier.notifier).fetchPagedMoviesList(pageKey);
     });
 
     super.initState();
@@ -62,6 +43,29 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen<PagedState>(
+      getPagedMovieNotifier,
+      (_, next) {
+        next.maybeMap(
+          pagingLoaded: (value) {
+            try {
+              final newItems = value.result;
+              final isLastPage = newItems.length < 20;
+              if (isLastPage) {
+                _pagingController.appendLastPage(newItems);
+              } else {
+                final nextPageKey = ref.read(setPageProvider.notifier).state++;
+                _pagingController.appendPage(newItems, nextPageKey);
+              }
+            } catch (error) {
+              _pagingController.error = error;
+            }
+          },
+          orElse: () {},
+        );
+      },
+    );
+
     return RefreshIndicator(
       onRefresh: () => Future.sync(
         () => _pagingController.refresh(),

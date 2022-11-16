@@ -1,30 +1,21 @@
 class MovieResponse {
   final int? page;
   final List<Result>? result;
-  final int? totalPages;
-  final int? totalResults;
+  final String? errorMessage;
 
   MovieResponse({
     this.page,
     this.result,
-    this.totalPages,
-    this.totalResults,
+    this.errorMessage,
   });
+
+  bool get refreshError => errorMessage != '' && result!.length <= 20;
 
   factory MovieResponse.fromJson(Map<String, dynamic> json) => MovieResponse(
         page: json['page'],
         result: (json['results'] as List<dynamic>)
             .map((e) => Result.fromJson(e as Map<String, dynamic>))
             .toList(),
-        totalPages: json['total_pages'],
-        totalResults: json['total_results'],
-      );
-
-  factory MovieResponse.empty() => MovieResponse(
-        page: null,
-        result: null,
-        totalPages: null,
-        totalResults: null,
       );
 }
 

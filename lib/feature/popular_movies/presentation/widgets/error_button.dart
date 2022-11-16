@@ -18,8 +18,9 @@ class ErrorButton extends ConsumerWidget {
           Text('Error: ${error.title}'),
           const SizedBox(height: 8),
           ElevatedButton(
-            onPressed: () =>
-                ref.read(getPagedMovieNotifier.notifier).fetchMovies(1),
+            onPressed: () => ref
+                .read(getPagedMovieNotifier.notifier)
+                .fetchPagedMoviesList(1),
             child: const Text('Try again'),
           ),
         ],

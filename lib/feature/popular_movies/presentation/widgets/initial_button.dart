@@ -12,7 +12,7 @@ class InitialButton extends ConsumerWidget {
     return Center(
       child: ElevatedButton(
         onPressed: () =>
-            ref.read(getPagedMovieNotifier.notifier).fetchMovies(1),
+            ref.read(getPagedMovieNotifier.notifier).fetchPagedMoviesList(1),
         child: const Text('Load Movies'),
       ),
     );
