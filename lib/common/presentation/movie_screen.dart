@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/english_movies_provider.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/high_rated_movies_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/page_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier.dart';
 import 'package:test_app/feature/popular_movies/presentation/movie_list.dart';
@@ -38,7 +40,7 @@ class MovieScreen extends ConsumerWidget {
               PopupMenuItem<String>(
                 value: 'englishFilter',
                 child: const Text('English Language'),
-                onTap: () => _getReleaseDate(ref),
+                onTap: () => _getEnglishMovies(ref),
               ),
               PopupMenuItem<String>(
                 value: 'clearFilters',
@@ -60,15 +62,11 @@ class MovieScreen extends ConsumerWidget {
   }
 
   void _getPopularity(WidgetRef ref) {
-    ref
-        .watch(getPagedMovieNotifier.notifier)
-        .fetchPopularMovies(ref.read(setPageProvider));
+    ref.read(highRatedMoviesProvider);
   }
 
-  void _getReleaseDate(WidgetRef ref) {
-    ref
-        .read(getPagedMovieNotifier.notifier)
-        .fetchEnglishLanguageMovies(ref.read(setPageProvider));
+  void _getEnglishMovies(WidgetRef ref) {
+    ref.read(englishMoviesProvider);
   }
 
   void _clearFilter(WidgetRef ref) {

@@ -17,7 +17,7 @@ class _HomeState extends ConsumerState<Home> {
   Widget build(BuildContext context) {
     ref.listen<bool>(
       shouldDisplayBottomSheet,
-      (prev, next) {
+      (_, next) {
         if (next = true) {
           _displayBottomSheet(
             S.current.error_fetching_movies,

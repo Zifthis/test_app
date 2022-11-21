@@ -46,7 +46,7 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
       getPagedMovieNotifier,
       (_, next) {
         next.maybeMap(
-          pagingLoaded: (value) => _provideState(value.result, ref),
+          pagingLoaded: (value) => _pagedListProviderState(value.result, ref),
           error: (error) => _pagingController.error = error,
           orElse: () {},
         );
@@ -62,11 +62,7 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
         builderDelegate: PagedChildBuilderDelegate<Result>(
           animateTransitions: true,
           itemBuilder: (context, item, index) => InkWell(
-            onTap: () => _onTapButton(
-              context,
-              ref,
-              item.id ?? 0,
-            ),
+            onTap: () => _onTapButton(context, ref, item.id ?? 0),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTileWidget(
@@ -85,17 +81,14 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
     super.dispose();
   }
 
-  void _provideState(List<Result> list, WidgetRef ref) {
+  void _pagedListProviderState(List<Result> list, WidgetRef ref) {
     final newItems = list;
     final isLastPage = newItems.length < 20;
     if (isLastPage) {
       _pagingController.appendLastPage(newItems);
     } else {
       final nextPageKey = ref.read(setPageProvider.notifier).state++;
-      _pagingController.appendPage(
-          // newItems.getRange(0, 3).toList(), nextPageKey);
-          newItems,
-          nextPageKey);
+      _pagingController.appendPage(newItems, nextPageKey);
     }
   }
 
