@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:test_app/feature/movie_details/domain/notifier/movie_details_notifier.dart';
 import 'package:test_app/feature/popular_movies/data/models/movie_response.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/movies_filter/high_rated_movies_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/page_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/paged_state.dart';
@@ -82,7 +83,9 @@ class _MovieListViewState extends ConsumerState<MovieListView> {
   }
 
   void _pagedListProviderState(List<Result> list, WidgetRef ref) {
-    final newItems = list;
+    final newItems = ref.read(highRatedMoviesProvider);
+
+    //final newItems = list;
     final isLastPage = newItems.length < 20;
     if (isLastPage) {
       _pagingController.appendLastPage(newItems);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/english_movies_provider.dart';
-import 'package:test_app/feature/popular_movies/domain/notifier/high_rated_movies_provider.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/movies_filter/english_movies_provider.dart';
+import 'package:test_app/feature/popular_movies/domain/notifier/movies_filter/high_rated_movies_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/page_provider.dart';
 import 'package:test_app/feature/popular_movies/domain/notifier/paged_notifier.dart';
 import 'package:test_app/feature/popular_movies/presentation/movie_list.dart';
